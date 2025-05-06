@@ -21,18 +21,7 @@ const mockEvents = [
         attendees: 42,
         image: "/kavi.png",
     },
-    {
-        id: 2,
-        title: "Annual Cultural Festival",
-        description: "Celebrate diversity with performances, food, and activities from around the world.",
-        date: "2025-05-20",
-        time: "10:00 - 20:00",
-        location: "Main Campus Square",
-        club: "International Students Association",
-        category: "Festival",
-        attendees: 156,
-        image: "/speechmaster.png",
-    },
+   
     // {
     //     id: 3,
     //     title: "AI Research Symposium",
