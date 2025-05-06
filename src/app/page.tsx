@@ -2,46 +2,20 @@ import { CalendarDays, MapPin, ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import EventsList from "@/components/event-list"
+import CurvedNavbar from "@/components/Navbar"
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       {/* Navigation */}
-      <header className="border-b">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center">
-            <span className="text-2xl font-bold text-orange-600">CampusEvents</span>
-          </Link>
-          <nav className="hidden md:flex items-center gap-6">
-            <Link href="/" className="text-orange-600 font-medium">
-              Home
-            </Link>
-            <Link href="/events" className="text-gray-600 hover:text-orange-600 transition-colors">
-              Events
-            </Link>
-            <Link href="/clubs" className="text-gray-600 hover:text-orange-600 transition-colors">
-              Clubs
-            </Link>
-            <Link href="/about" className="text-gray-600 hover:text-orange-600 transition-colors">
-              About
-            </Link>
-          </nav>
-          <div className="flex items-center gap-4">
-            <Link href="/login">
-              <Button variant="outline" className="border-orange-600 text-orange-600 hover:bg-orange-50">
-                Login
-              </Button>
-            </Link>
-            <Link href="/signup" className="hidden md:block">
-              <Button className="bg-orange-600 hover:bg-orange-700">Sign Up</Button>
-            </Link>
-          </div>
-        </div>
-      </header>
-
+    
       {/* Hero Section */}
       <section
-       className="bg-gradient-to-b from-orange-50 to-white">
+       className="bg-gradient-to-b  from-orange-50 to-white">
+         <div className="p-8">
+         <CurvedNavbar />
+         </div>
+
         <div 
         
         className="container mx-auto px-4 py-16 md:py-24">

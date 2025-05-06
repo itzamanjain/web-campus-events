@@ -162,7 +162,7 @@ export default function EventsList() {
                             </div>
                             <Link href={`/events/${event.id}`}>
                                 <Button variant="outline" size="sm" className="text-orange-600 border-orange-600 hover:bg-orange-50">
-                                    Register <ArrowRight className="ml-1 h-3 w-3" />
+                                    Join <ArrowRight className="ml-1 h-3 w-3" />
                                 </Button>
                             </Link>
                         </div>
