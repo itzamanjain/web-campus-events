@@ -29,9 +29,11 @@ export default function HomePage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-6">Browse Events</Button>
+                <Link href='https://dashboard.itsakash.site'>
                 <Button variant="outline" className="border-orange-600 text-orange-600 hover:bg-orange-50 px-6 py-6">
                   For Club Organizers
                 </Button>
+                </Link>
               </div>
             </div>
             <div className="relative">
