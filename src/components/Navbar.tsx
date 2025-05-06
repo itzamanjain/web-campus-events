@@ -7,7 +7,7 @@ import { User } from "lucide-react"
 export default function CurvedNavbar() {
   return (
     <header className="w-full  flex justify-center">
-      <div className="bg-orange-200 text-black px-8 py-4 rounded-full shadow-lg flex justify-between items-center w-[90%] max-w-5xl">
+      <div className="bg-orange-100 text-black px-8 py-4 rounded-full shadow-lg flex justify-between items-center w-[90%] max-w-5xl">
 
         {/* Logo */}
         <Link href="/" className="flex items-center gap-1 text-xl font-bold">

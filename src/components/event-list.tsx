@@ -11,15 +11,15 @@ import Image from "next/image"
 const mockEvents = [
     {
         id: 1,
-        title: "Tech Startup Workshop",
-        description: "Learn how to launch your tech startup from industry experts.",
-        date: "2025-05-15",
-        time: "14:00 - 16:00",
-        location: "Business School, Room 302",
-        club: "Entrepreneurship Society",
-        category: "Workshop",
+        title: "Kavi Sammelan - Mushaira",
+        description: "An evening of poetry and music featuring renowned poets and artists.",
+        date: "2025-05-08",
+        time: "14:30 - 16:00",
+        location: "Medical LT,TMU",
+        club: "Poetry Club",
+        category: "Cultural",
         attendees: 42,
-        image: "/speechmaster.png",
+        image: "/kavi.png",
     },
     {
         id: 2,
@@ -126,56 +126,61 @@ export default function EventsList() {
             {events.map((event) => (
                 <div
                     key={event.id}
-                    className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow"
+                    className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow border border-gray-200 overflow-hidden"
                 >
-                    <div className="relative h-48">
-                        <div className="relative w-full h-[200px]">
+                    {/* Image section */}
+                    <div className="relative h-70">
+                        <div className="relative w-full h-70">
                             <Image
                                 src={event.image || "/placeholder.svg"}
                                 alt={event.title}
                                 fill
-                                className="object-cover"
+                                className="object-fit w-full"
                             />
                         </div>
-                        <Badge className="absolute top-4 right-4 bg-orange-600">{event.category}</Badge>
+                        <Badge className="absolute top-4 right-4 bg-orange-600 text-white">
+                            {event.category}
+                        </Badge>
                     </div>
-                    <div className="p-6">
-                        <div className="flex items-center text-sm text-gray-500 mb-2">
-                            <CalendarDays className="h-4 w-4 mr-1 text-orange-600" />
-                            <span>{formatDate(event.date)}</span>
-                            <span className="mx-2">•</span>
-                            <Clock className="h-4 w-4 mr-1 text-orange-600" />
-                            <span>{event.time}</span>
+
+                    {/* Content section */}
+                    <div className="p-5 space-y-3">
+                        <h3 className="text-xl font-semibold text-gray-900">{event.title}</h3>
+
+                        <div className="text-sm text-gray-500 flex items-center">
+                            <span className="text-orange-600 font-medium">By</span>
+                            <span className="ml-2">{event.club}</span>
                         </div>
-                        <h3 className="text-xl font-bold mb-2 text-gray-900">{event.title}</h3>
-                        <p className="text-gray-600 mb-4 line-clamp-2">{event.description}</p>
-                        <div className="flex items-center text-sm text-gray-500 mb-4">
-                            <MapPin className="h-4 w-4 mr-1 text-orange-600" />
+
+                        <div className="flex items-center text-sm text-gray-500">
+                            <MapPin className="h-4 w-4 text-orange-600 mr-1" />
                             <span className="truncate">{event.location}</span>
                         </div>
-                        <div className="flex items-center justify-between">
-                            <div className="flex items-center text-sm text-gray-500">
-                                <div className="bg-orange-100 p-1 rounded-full">
-                                    <Users className="h-4 w-4 text-orange-600" />
-                                </div>
-                                <span className="ml-1">{event.attendees} attending</span>
-                            </div>
+
+                        <div className="flex items-center text-sm text-gray-500">
+                            <CalendarDays className="h-4 w-4 text-orange-600 mr-1" />
+                            <span>{formatDate(event.date)}</span>
+                            <span className="mx-2">•</span>
+                            <Clock className="h-4 w-4 text-orange-600 mr-1" />
+                            <span>{event.time}</span>
+                        </div>
+
+                        {/* Footer with Join button */}
+                        <div className="pt-3 flex justify-start ">
                             <Link href={`/events/${event.id}`}>
-                                <Button variant="outline" size="sm" className="text-orange-600 border-orange-600 hover:bg-orange-50">
-                                    Join <ArrowRight className="ml-1 h-3 w-3" />
+                                <Button
+                                    variant="outline"
+                                    size="sm"
+                                    className="text-orange-600 border-orange-600 hover:bg-orange-50"
+                                >
+                                    Join
+                                    <ArrowRight className="ml-1 h-4 w-4" />
                                 </Button>
                             </Link>
                         </div>
                     </div>
-                    <div className="px-6 py-3 bg-gray-50 border-t">
-                        <Link
-                            href={`/clubs/${event.club.toLowerCase().replace(/\s+/g, "-")}`}
-                            className="text-sm font-medium text-orange-600 hover:text-orange-700"
-                        >
-                            {event.club}
-                        </Link>
-                    </div>
                 </div>
+
             ))}
         </div>
     )

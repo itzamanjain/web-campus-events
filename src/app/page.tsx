@@ -84,7 +84,7 @@ export default function HomePage() {
           <EventsList />
 
           <div className="mt-12 text-center">
-            <Button className="bg-orange-600 hover:bg-orange-700 px-8">Load More Events</Button>
+            <Button className="bg-orange-600 hover:bg-orange-700 px-8">More Events Coming Soon</Button>
           </div>
         </div>
       </section>
