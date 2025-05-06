@@ -6,20 +6,20 @@ import { User } from "lucide-react"
 
 export default function CurvedNavbar() {
   return (
-    <header className="w-full flex justify-center">
-      <div className="bg-[#393e4f] text-white px-8 py-4 rounded-full shadow-lg flex justify-between items-center w-[90%] max-w-5xl">
-        
+    <header className="w-full  flex justify-center">
+      <div className="bg-orange-200 text-black px-8 py-4 rounded-full shadow-lg flex justify-between items-center w-[90%] max-w-5xl">
+
         {/* Logo */}
         <Link href="/" className="flex items-center gap-1 text-xl font-bold">
-          <span className="text-white">Campus</span>
+          <span className="text-black">Campus</span>
           <span className="text-orange-400">Events</span>
         </Link>
 
         {/* Navigation Links */}
         <nav className="hidden md:flex items-center gap-6">
           <Link href="/" className="text-orange-400 border-b-2 border-orange-400 pb-1">Home</Link>
-          <Link href="/about" className="hover:text-orange-400">Events</Link>
-          <Link href="/services" className="hover:text-orange-400">Clubs</Link>
+          <Link href="/events" className="hover:text-orange-400">Events</Link>
+          <Link href="/clubs" className="hover:text-orange-400">Clubs</Link>
         </nav>
 
         {/* Action Button */}

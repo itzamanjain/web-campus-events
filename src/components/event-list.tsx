@@ -19,7 +19,7 @@ const mockEvents = [
         club: "Entrepreneurship Society",
         category: "Workshop",
         attendees: 42,
-        image: "/eventphoto.jpg",
+        image: "/speechmaster.png",
     },
     {
         id: 2,
