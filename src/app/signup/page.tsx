@@ -1,64 +1,99 @@
-'use client'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Label } from '@radix-ui/react-label'
-import React from 'react'
+ 'use client'
 
-const page = () => {
+import React, { useEffect, useState } from 'react'
+import { Button } from "@/components/ui/button"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { useRouter } from 'next/navigation'
+import axios from 'axios'
+import Link from 'next/link'
 
-    const [name, setName] = React.useState('')
-    const [email, setEmail] = React.useState('')
-    const [password, setPassword] = React.useState('')
-    const [terms, setTerms] = React.useState(false)
+const Page: React.FC = () => {
+  const [fullname, setFullname] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [loading, setLoading] = useState(false)
 
-    // api call here
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault()
-        // Handle form submission logic here
-        console.log('Form submitted:', { name, email, password, terms })
+  const router = useRouter()
+
+  
+
+  const handleClick = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+
+    
+
+    try {
+      const response = await axios.post('http://localhost:8000/user/registeruser',   {
+         fullname,
+         email,
+         password
+      })
+
+      console.log("response here", response.data);
+      
+
+      if (response.data.message === 'User registered successfully') {
+        router.push('/login')
+      }
+    } catch (error) {
+      console.error("Error creating admin:", error)
+    } finally {
+      setLoading(false)
     }
-
+  }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <Card className="w-full max-w-sm mx-auto mt-10">
+    <div className="min-h-screen flex items-center justify-center bg-white p-4">
+      <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle>Sign Up</CardTitle>
           <CardDescription>Create a new account to get started.</CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          <form onSubmit={handleClick}>
             <div className="grid w-full items-center gap-4">
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="name">Name</Label>
-                <Input id="name" placeholder="Enter your name" />
+                <Input id="name" onChange={(e) => setFullname(e.target.value)} placeholder="Enter your name" />
               </div>
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" placeholder="Enter your email" type="email" />
+                <Input id="email" type="email" onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email" />
               </div>
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="password">Password</Label>
-                <Input
-                  id="password"
-                  placeholder="Choose a password"
-                  type="password"
-                />
-              </div>
-              <div className="flex items-center space-x-2">
-                <switch id="terms" />
-                <Label htmlFor="terms">I agree to the terms and conditions</Label>
+                <Input id="password" type="password" onChange={(e) => setPassword(e.target.value)} placeholder="Choose a password" />
               </div>
             </div>
+            <CardFooter className="pt-4 px-0">
+              <Button
+                type="submit"
+                className="w-full"
+                disabled={loading}
+              >
+                {loading ? 'Creating...' : 'Create Account'}
+              </Button>
+            </CardFooter>
           </form>
+          <Link href='/login'>
+            <p className='text-center text-black text-md mt-2 underline'>
+              Already have an account? Login
+            </p>
+          </Link>
         </CardContent>
-        <CardFooter>
-          <Button className="w-full">Create Account</Button>
-        </CardFooter>
       </Card>
     </div>
   )
 }
 
-export default page
+export default Page

@@ -18,7 +18,7 @@ export default function CurvedNavbar() {
         {/* Navigation Links */}
         <nav className="hidden md:flex items-center gap-6">
           <Link href="/" className="text-orange-400 border-b-2 border-orange-400 pb-1">Home</Link>
-          <Link href="/events" className="hover:text-orange-400">Events</Link>
+          {/* <Link href="/events" className="hover:text-orange-400">Events</Link> */}
           <Link href="/clubs" className="hover:text-orange-400">Clubs</Link>
         </nav>
 

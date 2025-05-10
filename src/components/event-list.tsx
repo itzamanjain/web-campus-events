@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import Image from "next/image"
 import axios from "axios"
+import { useRouter } from "next/navigation"
 
 // Type for a single event
 type Event = {
@@ -43,6 +44,7 @@ export default function EventsList() {
   const [events, setEvents] = useState<Event[]>([])
   const [loading, setLoading] = useState(true)
 
+  const router = useRouter();
   useEffect(() => {
     const fetchEvents = async () => {
       try {
@@ -58,6 +60,33 @@ export default function EventsList() {
 
     fetchEvents()
   }, [])
+
+  const handleJoinEvent = async(event: Event) => {
+    // Handle the join event logic here
+    try { 
+      // Make an API call to join the event 
+      const token = localStorage.getItem("token")
+
+      if(!token) {
+        console.log("User not logged in")
+        router.push("/login")
+        return
+      }
+
+        const response = await axios.post("",{
+          
+          eventid: event._id
+        })
+
+        console.log("Event joined successfully:", response.data);
+
+        
+      
+    } catch (error) {
+      
+    }
+    console.log("Join event clicked")
+  }
 
   if (loading) {
     return (
@@ -124,24 +153,29 @@ export default function EventsList() {
               <p>{event.description}</p>
             </div>
 
-            {/* Attendees and Participants */}
-            {/* <div className="flex items-center text-sm text-gray-500">
-              <span className="font-medium">Participants:</span>
-              <span className="ml-1">{event.attendees}</span>
-            </div> */}
+             
 
             {/* Footer */}
             <div className="pt-3 flex justify-between items-center">
-              <Link href={`/events/${event._id}`}>
-                {/* <Button
+              <Link href={`/eventsjoin/${event._id}`}>
+                <Button
                   variant="outline"
                   size="sm"
+                  onClick={() => handleJoinEvent(event)}
                   className="text-orange-600 border-orange-600 hover:bg-orange-50"
                 >
                   Join
                   <ArrowRight className="ml-1 h-4 w-4" />
-                </Button> */}
+                </Button>
               </Link>
+
+               <Link href={`/participants/${event._id}`} >
+                 <Button>
+                   Participants
+                 </Button>
+                </Link>
+
+                
               {/* <span className="text-sm text-gray-500">Updated: {formatDate(event.updatedAt)}</span> */}
             </div>
           </div>
@@ -150,3 +184,5 @@ export default function EventsList() {
     </div>
   )
 }
+
+ 
